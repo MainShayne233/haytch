@@ -45,10 +45,7 @@ pub fn parse_doctype_declaration_test() {
 }
 
 pub fn parse_html_fragment_test() {
-  // let empty_element = "<h1></h1>"
-  // empty_element
-  // |> haytch.parse_html_fragment()
-  // |> should.equal(Ok(Element("h1", [], [])))
+  let empty_element = "<h1></h1>"
   let singleton_element = "<input/>"
   let singleton_with_space_element = "<input   />"
 
@@ -59,4 +56,8 @@ pub fn parse_html_fragment_test() {
   singleton_with_space_element
   |> haytch.parse_html_fragment()
   |> should.equal(Ok(Element("input", [], [])))
+
+  empty_element
+  |> haytch.parse_html_fragment()
+  |> should.equal(Ok(Element("h1", [], [])))
 }
