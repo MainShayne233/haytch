@@ -14,6 +14,5 @@ parse_doctype_declaration(Input) ->
 parse_html_fragment(Input) ->
   Text = binary:bin_to_list(Input),
   {ok, Tokens, _} = haytch_html_lexer:string(Text),
-  {ok, {Name, Attrs, Children}} = haytch_html_parser:parse(Tokens),
-  {ok, {element, list_to_binary(Name), Attrs, Children}}.
+  haytch_html_parser:parse(Tokens).
 
