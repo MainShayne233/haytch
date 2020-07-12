@@ -19,3 +19,5 @@ gen
 log
 logs
 rebar3.crashdump
+src/haytch_html_lexer.erl
+src/haytch_html_parser.erl
