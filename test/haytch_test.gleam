@@ -44,19 +44,20 @@ pub fn parse_doctype_declaration_test() {
   |> should.equal(Error("No match"))
 }
 
-pub fn parse_html_fragment_test() {
-  let singleton_element = "<input/>"
-  singleton_element
+pub fn parse_singleton_element_test() {
+  "<input/>"
   |> haytch.parse_html_fragment()
   |> should.equal(Ok(Element("input", [], [])))
+}
 
-  let singleton_with_space_element = "<input   />"
-  singleton_with_space_element
+pub fn parse_singleton_with_spaces_test() {
+  "<input   />"
   |> haytch.parse_html_fragment()
   |> should.equal(Ok(Element("input", [], [])))
+}
 
-  let empty_element = "<h1></h1>"
-  empty_element
+pub fn parse_empty_element_test() {
+  "<h1></h1>"
   |> haytch.parse_html_fragment()
   |> should.equal(Ok(Element("h1", [], [])))
 }
