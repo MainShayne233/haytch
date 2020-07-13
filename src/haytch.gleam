@@ -1,13 +1,9 @@
 pub type ParseResult(t) =
   Result(tuple(String, t), String)
 
-pub type AttributeValueType {
-  String
-  Bool
-}
-
 pub type AttributeValue {
-  AttributeValue(value_: String, typ: AttributeValueType)
+  AttrString(value: String)
+  AttrBool(value: Bool)
 }
 
 pub type Attribute {

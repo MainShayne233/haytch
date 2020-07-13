@@ -1,4 +1,4 @@
-import haytch.{Attribute, AttributeValue, Bool, Doctype, Element, String}
+import haytch.{AttrBool, AttrString, Attribute, Doctype, Element}
 import gleam/should
 
 pub fn parse_doctype_declaration_test() {
@@ -66,12 +66,6 @@ pub fn parse_singleton_with_valueless_attribute_test() {
   "<input disabled />"
   |> haytch.parse_html_fragment()
   |> should.equal(
-    Ok(
-      Element(
-        "input",
-        [Attribute("disabled", AttributeValue("true", Bool))],
-        [],
-      ),
-    ),
+    Ok(Element("input", [Attribute("disabled", AttrBool(True))], [])),
   )
 }
