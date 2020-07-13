@@ -4,6 +4,7 @@ pub type ParseResult(t) =
 pub type AttributeValue {
   AttrString(value: String)
   AttrBool(value: Bool)
+  AttrInt(value: Int)
 }
 
 pub type Attribute {

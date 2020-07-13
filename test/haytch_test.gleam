@@ -1,4 +1,4 @@
-import haytch.{AttrBool, AttrString, Attribute, Doctype, Element}
+import haytch.{AttrBool, AttrInt, AttrString, Attribute, Doctype, Element}
 import gleam/should
 
 pub fn parse_doctype_declaration_test() {
@@ -76,4 +76,14 @@ pub fn parse_singleton_with_identifier_attribute_value_test() {
   |> should.equal(
     Ok(Element("input", [Attribute("type", AttrString("checkbox"))], [])),
   )
+}
+
+pub fn parse_singleton_with_integer_attribute_value_test() {
+  "<input min=0 />"
+  |> haytch.parse_html_fragment()
+  |> should.equal(Ok(Element("input", [Attribute("min", AttrInt(0))], [])))
+
+  "<input min=-10 />"
+  |> haytch.parse_html_fragment()
+  |> should.equal(Ok(Element("input", [Attribute("min", AttrInt(-10))], [])))
 }
