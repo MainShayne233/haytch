@@ -3,10 +3,11 @@ pub type ParseResult(t) =
 
 pub type AttributeValueType {
   String
+  Bool
 }
 
 pub type AttributeValue {
-  AttributeValue(typ: AttributeValueType, value_: String)
+  AttributeValue(value_: String, typ: AttributeValueType)
 }
 
 pub type Attribute {
