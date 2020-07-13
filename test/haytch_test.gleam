@@ -69,3 +69,11 @@ pub fn parse_singleton_with_valueless_attribute_test() {
     Ok(Element("input", [Attribute("disabled", AttrBool(True))], [])),
   )
 }
+
+pub fn parse_singleton_with_identifier_attribute_value_test() {
+  "<input type=checkbox />"
+  |> haytch.parse_html_fragment()
+  |> should.equal(
+    Ok(Element("input", [Attribute("type", AttrString("checkbox"))], [])),
+  )
+}
