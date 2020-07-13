@@ -23,6 +23,7 @@ attribute_value -> bool : attr_value(attr_bool, unwrap('$1') == "true").
 attribute_value -> identifier : attr_value(attr_string, unwrap('$1')).
 attribute_value -> integer : attr_value(attr_int, unwrap('$1')).
 attribute_value -> float : attr_value(attr_float, unwrap('$1')).
+attribute_value -> quoted_string : attr_value(attr_string, dequote(unwrap('$1'))).
 % maybe float?
 
 Erlang code.
@@ -36,6 +37,8 @@ attr_value(attr_float, "." ++ Rest) -> {attr_float, list_to_float("0." ++ Rest)}
 attr_value(attr_float, Val) -> {attr_float, list_to_float(Val)};
 attr_value(attr_string, Val) -> {attr_string, list_to_binary(Val)};
 attr_value(Typ, Val) -> {Typ, Val}.
+
+dequote(Val) -> string:slice(Val, 1, string:len(Val) - 2).
 
 elem({Name, Attrs}, Name) ->
   do_elem(Name, Attrs, []).

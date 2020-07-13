@@ -6,7 +6,7 @@ Definitions.
 IDENTIFIER = [A-Za-z][A-Za-z0-9-]+
 INTEGER = -?[0-9]+
 FLOAT = [0-9]*\.[0-9]+
-% QUOTED_STRING = "(\?:[^"\\]|\\.)*"
+QUOTED_STRING = ["'].*["']
 EQ = \=
 LT = \<
 GT = \>
@@ -29,6 +29,6 @@ Rules.
 {CLT} : {token, {clt, TokenLine, TokenChars}}.
 {CGT} : {token, {cgt, TokenLine, TokenChars}}.
 {EQ} : {token, {eq, TokenLine, TokenChars}}.
-% {QUOTED_STRING} : {token, {quoted_string, TokenLine, TokenChars}}.
+{QUOTED_STRING} : {token, {quoted_string, TokenLine, TokenChars}}.
 
 Erlang code.

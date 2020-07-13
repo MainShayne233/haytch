@@ -101,3 +101,21 @@ pub fn parse_singleton_with_float_attribute_value_test() {
     Ok(Element("input", [Attribute("step", AttrFloat(0.05))], [])),
   )
 }
+
+pub fn parse_singleton_with_quoted_string_attribute_value_test() {
+  "<input placeholder=\"Woah, man!\"/>"
+  |> haytch.parse_html_fragment()
+  |> should.equal(
+    Ok(
+      Element("input", [Attribute("placeholder", AttrString("Woah, man!"))], []),
+    ),
+  )
+
+  "<input placeholder='Hey, man!'/>"
+  |> haytch.parse_html_fragment()
+  |> should.equal(
+    Ok(
+      Element("input", [Attribute("placeholder", AttrString("Hey, man!"))], []),
+    ),
+  )
+}
