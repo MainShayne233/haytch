@@ -14,7 +14,7 @@ singleton_tag -> lt identifier cgt : {unwrap('$2'), []}.
 singleton_tag -> lt identifier whitespace tag_attributes cgt : {unwrap('$2'), '$4'}.
 
 tag_attributes -> tag_attribute : ['$1'].
-% tag_attributes -> tag_attribute whitespace tag_attributes : ['$1' | '$2'].
+tag_attributes -> tag_attribute whitespace tag_attributes : ['$1' | '$3'].
 
 tag_attribute -> identifier eq attribute_value : attr(unwrap('$1'), '$3').
 tag_attribute -> identifier : attr(unwrap('$1'), attr_value(attr_bool, true)).

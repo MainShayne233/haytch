@@ -119,3 +119,22 @@ pub fn parse_singleton_with_quoted_string_attribute_value_test() {
     ),
   )
 }
+
+pub fn parse_singleton_with_multiple_attributes_test() {
+  "<input disabled type=range min=-10 step=0.5 />"
+  |> haytch.parse_html_fragment()
+  |> should.equal(
+    Ok(
+      Element(
+        "input",
+        [
+          Attribute("disabled", AttrBool(True)),
+          Attribute("type", AttrString("range")),
+          Attribute("min", AttrInt(-10)),
+          Attribute("step", AttrFloat(0.5)),
+        ],
+        [],
+      ),
+    ),
+  )
+}
