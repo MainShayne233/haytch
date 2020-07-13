@@ -1,4 +1,6 @@
-import haytch.{AttrBool, AttrInt, AttrString, Attribute, Doctype, Element}
+import haytch.{
+  AttrBool, AttrFloat, AttrInt, AttrString, Attribute, Doctype, Element
+}
 import gleam/should
 
 pub fn parse_doctype_declaration_test() {
@@ -86,4 +88,16 @@ pub fn parse_singleton_with_integer_attribute_value_test() {
   "<input min=-10 />"
   |> haytch.parse_html_fragment()
   |> should.equal(Ok(Element("input", [Attribute("min", AttrInt(-10))], [])))
+}
+
+pub fn parse_singleton_with_float_attribute_value_test() {
+  "<input step=0.5 />"
+  |> haytch.parse_html_fragment()
+  |> should.equal(Ok(Element("input", [Attribute("step", AttrFloat(0.5))], [])))
+
+  "<input step=.05 />"
+  |> haytch.parse_html_fragment()
+  |> should.equal(
+    Ok(Element("input", [Attribute("step", AttrFloat(0.05))], [])),
+  )
 }

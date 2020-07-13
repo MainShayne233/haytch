@@ -5,6 +5,7 @@ pub type AttributeValue {
   AttrString(value: String)
   AttrBool(value: Bool)
   AttrInt(value: Int)
+  AttrFloat(value: Float)
 }
 
 pub type Attribute {
