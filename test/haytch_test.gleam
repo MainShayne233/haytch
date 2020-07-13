@@ -138,3 +138,21 @@ pub fn parse_singleton_with_multiple_attributes_test() {
     ),
   )
 }
+
+pub fn parse_tag_with_multiple_attributes_test() {
+  "<textarea name=\"comment\" rows=4 cols=50></textarea>"
+  |> haytch.parse_html_fragment()
+  |> should.equal(
+    Ok(
+      Element(
+        "textarea",
+        [
+          Attribute("name", AttrString("comment")),
+          Attribute("rows", AttrInt(4)),
+          Attribute("cols", AttrInt(50)),
+        ],
+        [],
+      ),
+    ),
+  )
+}

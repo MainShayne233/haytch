@@ -6,7 +6,7 @@ tag -> start_tag close_tag : elem('$1', '$2').
 tag -> singleton_tag : elem('$1').
 
 start_tag -> lt identifier gt : {unwrap('$2'), []}.
-% start_tag -> lt identifier tag_attributes gt : {'$1', '$2'}.
+start_tag -> lt identifier whitespace tag_attributes gt : {unwrap('$2'), '$4'}.
 
 close_tag -> clt identifier gt : unwrap('$2').
 
